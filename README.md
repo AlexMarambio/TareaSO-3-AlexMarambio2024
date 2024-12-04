@@ -8,51 +8,10 @@ Para compilar y ejecutar el programa se ocupa (dentro del directorio donde se de
 ``` 
 g++ -o nombre_ejecutable T3-alex2024.cpp
 ```
--   ejecutar
+- ejecutar
 ``` 
 ./nombre_ejecutable
 ```
-
----
-
-## **Funcionamiento del Código**
-
-1. **Inicialización:**
-
-   - El programa solicita al usuario ingresar:
-     - El tamaño de la memoria RAM en MB.
-     - El tamaño de cada página en **KB**.
-   - Genera el tamaño de la memoria virtual como un valor aleatorio entre 1.5 y 4.5 veces la memoria RAM.
-   - Calcula cuántas páginas pueden caber en RAM y en la memoria virtual.
-
-2. **Creación de procesos:**
-
-   - Cada 2 segundos, se crea un proceso con un tamaño aleatorio entre **1 MB y 10 MB**.
-   - Las páginas del proceso se asignan primero a la RAM si hay espacio. Si no, se alojan en la memoria virtual.
-   - Si no queda espacio en RAM ni en memoria virtual, la simulación termina con un mensaje de error.
-
-3. **Acceso a memoria:**
-
-   - Cada 5 segundos, el programa genera un acceso aleatorio a una dirección virtual (número de página).
-   - Si la página solicitada no está en RAM, ocurre un *page fault* y se mueve la página desde la memoria virtual a la RAM.
-    Para esto se emplea el algoritmo **FIFO**, osea que el primer proceso en entrar a la RAM será el primero en irse. También para una visualización más fácil de qe realmente se mueve la pagina a la RAM, el valor de esta no cambia. Como se verá a continuación si en el swap tenia numero de pagina vitual `6`, el numero de marco físico tambien será `6` y se podrá ver en la ayuda visual de la RAM y SWAP que implementamos junto con el proceso al que le pertenece (pid: id del proceso).
-
-4. **Eliminación de procesos:**
-
-   - Cada 5 segundos, un proceso aleatorio es eliminado.
-   - Todas las páginas asociadas al proceso se eliminan tanto de la RAM como de la memoria virtual.
-
-5. **Visualización:**
-
-   - Cada 10 segundos, se muestra el estado actual de la RAM y la memoria virtual, incluyendo el identificador de proceso (PID) y el número de página como se mencionó más arriba para ver visualmente como se ejecuta el swapping.
-
-6. **Colores en consola:**
-
-   - Diferentes colores se usan para identificar eventos más facilmente:
-     - **Verde:** Accesos exitosos a RAM o SWAP.
-     - **Amarillo:** *Page faults* y errores al buscar una página.
-     - **Rojo:** Finalización por falta de memoria.
-     - **Azul y Morado:** Para representar visualmente la RAM y SWAP.
 
 ---
 
@@ -103,3 +62,44 @@ El programa genera mensajes en la consola indicando:
      RAM: [ (pfn: 0, pid: 1), (pfn: 1, pid: 2) ]
      SWAP: [ (vpn: 3, pid: 1), (vpn: 4, pid: 3) ]
      ```
+
+---
+
+## **Funcionamiento del Código**
+
+1. **Inicialización:**
+
+   - El programa solicita al usuario ingresar:
+     - El tamaño de la memoria RAM en MB.
+     - El tamaño de cada página en **KB**.
+   - Genera el tamaño de la memoria virtual como un valor aleatorio entre 1.5 y 4.5 veces la memoria RAM.
+   - Calcula cuántas páginas pueden caber en RAM y en la memoria virtual.
+
+2. **Creación de procesos:**
+
+   - Cada 2 segundos, se crea un proceso con un tamaño aleatorio entre **1 MB y 10 MB**.
+   - Las páginas del proceso se asignan primero a la RAM si hay espacio. Si no, se alojan en la memoria virtual.
+   - Si no queda espacio en RAM ni en memoria virtual, la simulación termina con un mensaje de error.
+
+3. **Acceso a memoria:**
+
+   - Cada 5 segundos, el programa genera un acceso aleatorio a una dirección virtual (número de página).
+   - Si la página solicitada no está en RAM, ocurre un *page fault* y se mueve la página desde la memoria virtual a la RAM.
+    Para esto se emplea el algoritmo **FIFO**, osea que el primer proceso en entrar a la RAM será el primero en irse. También para una visualización más fácil de qe realmente se mueve la pagina a la RAM, el valor de esta no cambia. Como se verá a continuación si en el swap tenia numero de pagina vitual `6`, el numero de marco físico tambien será `6` y se podrá ver en la ayuda visual de la RAM y SWAP que implementamos junto con el proceso al que le pertenece (pid: id del proceso).
+
+4. **Eliminación de procesos:**
+
+   - Cada 5 segundos, un proceso aleatorio es eliminado.
+   - Todas las páginas asociadas al proceso se eliminan tanto de la RAM como de la memoria virtual.
+
+5. **Visualización:**
+
+   - Cada 10 segundos, se muestra el estado actual de la RAM y la memoria virtual, incluyendo el identificador de proceso (PID) y el número de página como se mencionó más arriba para ver visualmente como se ejecuta el swapping.
+
+6. **Colores en consola:**
+
+   - Diferentes colores se usan para identificar eventos más facilmente:
+     - **Verde:** Accesos exitosos a RAM o SWAP.
+     - **Amarillo:** *Page faults* y errores al buscar una página.
+     - **Rojo:** Finalización por falta de memoria.
+     - **Azul y Morado:** Para representar visualmente la RAM y SWAP.
