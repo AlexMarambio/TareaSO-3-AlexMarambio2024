@@ -52,6 +52,8 @@ El programa genera mensajes en la consola indicando:
      RAM: [ (pfn: 0, pid: 1), (pfn: 1, pid: 2) ]
      SWAP: [ (vpn: 3, pid: 1), (vpn: 4, pid: 3) ]
      ```
+     Donde `pid` es el id del proceso cargado en esa página, `pfn` es el numero de marco físico y `vpn` numero de pagina virtual.
+     Al realizar un swap el numero en el `vpn` será el mismo que quedará posteriormente en `pfn` y viceversa: Esto para simplificar la busqueda del cambio realizado y ver efectivamente que funciona el swapping tanto de memoria vitual -> RAM como RAM -> memoria virtual.
 
 3. **Finalización del programa:**
 
@@ -61,6 +63,10 @@ El programa genera mensajes en la consola indicando:
      Ultima RAM y SWAP:
      RAM: [ (pfn: 0, pid: 1), (pfn: 1, pid: 2) ]
      SWAP: [ (vpn: 3, pid: 1), (vpn: 4, pid: 3) ]
+     Información de la simulación:
+     Tamaño de la RAM 64 MB
+     Multiplicador (cuantas veces la memoria virtual es más grande que la RAM): 2.5
+     Tamaño memoria virtual: 160 MB
      ```
 
 ---
