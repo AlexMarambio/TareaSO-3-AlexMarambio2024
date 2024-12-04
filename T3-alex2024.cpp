@@ -176,7 +176,7 @@ void accessMemory() {
     }
 
     if (pageFoundInRAM) {
-        cout << "Página " << virtualPageNumber << " encontrada en la RAM.\n";
+        cout << green <<"Página " << virtualPageNumber << " encontrada en la RAM.\n"<<reset;
     } else {
         // Page Fault: la página no está en la RAM, buscarla en la memoria virtual
         cout << yellow <<"Page Fault: Página " << virtualPageNumber << " no encontrada en la RAM. Buscando en la memoria virtual...\n"<<reset;
