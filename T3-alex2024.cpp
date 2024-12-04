@@ -130,10 +130,10 @@ Process createProcess() {
             newProcess.pages.push_back(newPage);
 
         } else {
-            cout << colorFINISH << "Memoria insuficiente. Terminando simulación.\n"<< reset;
+            cout << colorFINISH << "Memoria insuficiente. Terminando simulación.\n Ultima RAM y SWAP:\n"<< reset;
             watchRAMusage();
             watchSWAPusage();
-            
+            cout << colorFINISH << "Simulación terminada por falta memoria en swap, info simulación: \n"<< reset;
             cout << "Tamaño de la RAM: " << ramSize << " MB (" << ramPages << " páginas)" << endl;
             cout << "Multiplicador para memoria virtual aleatorio: " << VirMemCoef << endl;
             cout << "Tamaño de la memoria virtual: " << (ramSize * VirMemCoef) << " MB (" << virtualPages << " páginas)"<< endl;
