@@ -5,9 +5,13 @@ Este programa simula el mecanismo de **paginación de memoria** utilizado por lo
 - Se recomienda ejecutar en Linux, aunque funciona para windows sin problema.
 Para compilar y ejecutar el programa se ocupa (dentro del directorio donde se descargue o clone el repositorio), los siguientes comandos por consola:
 -   compilar
-``` g++ -o nombre_ejecutable T3-alex2024.cpp```
+``` 
+g++ -o nombre_ejecutable T3-alex2024.cpp
+```
 -   ejecutar
-``` ./nombre_ejecutable```
+``` 
+./nombre_ejecutable
+```
 
 ---
 
