@@ -43,11 +43,11 @@ Al iniciar la simulación, se solicita:
 
 1. **Tamaño de la RAM:**
 
-   - Ingresar un valor entero en MB. Ejemplo: `1024`.
+   - Ingresar un valor entero en MB. Ejemplo: `64`.
 
 2. **Tamaño de cada página:**
 
-   - Ingresar un valor entero en KB. Ejemplo: `4`.
+   - Ingresar un valor entero en KB. Ejemplo: `2046`. (Para que sean 2 MB)
 
 ---
 
@@ -84,52 +84,3 @@ El programa genera mensajes en la consola indicando:
      RAM: [ (pfn: 0, pid: 1), (pfn: 1, pid: 2) ]
      SWAP: [ (vpn: 3, pid: 1), (vpn: 4, pid: 3) ]
      ```
-
----
-
-## **Aspectos Importantes del Código**
-
-1. **Estructuras principales:**
-
-   - `Page`: Representa una página con su identificador de proceso, número de página y estado (si está en RAM o swap).
-   - `Process`: Representa un proceso con un identificador, tamaño y sus páginas asociadas.
-
-2. **RAM y memoria virtual:**
-
-   - Se utiliza una cola (`queue`) para la RAM, implementando la política FIFO.
-   - Se utiliza un vector (`vector`) para la memoria virtual.
-
-3. **Colores en consola:**
-
-   - Diferentes colores se usan para identificar eventos:
-     - Verde: Accesos exitosos a RAM.
-     - Amarillo: *Page faults.*
-     - Rojo: Finalización por falta de memoria.
-
-4. **Política de reemplazo:**
-
-   - FIFO reemplaza la página más antigua en RAM cuando esta está llena.
-
----
-
-## **Ejemplo de Ejecución**
-
-**Inputs:**
-
-```
-Ingrese el tamaño de la RAM en MB: 1024
-Ingrese el tamaño de cada página en KB: 4
-```
-
-**Outputs:**
-
-```
-Proceso 1 (3.5 MB) creado.
-RAM: [ (pfn: 0, pid: 1), (pfn: 1, pid: 1) ]
-SWAP: [ ]
-Page Fault: Página 3 no encontrada en la RAM. Buscando en la memoria virtual...
-Página 3 encontrada en la memoria virtual (swap).
-Reemplazando página más antigua en la RAM: Proceso 1, Página 0
-```
-
-aa
