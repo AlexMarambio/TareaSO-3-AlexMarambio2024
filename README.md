@@ -35,6 +35,14 @@ Este programa simula el mecanismo de **paginación de memoria** utilizado por lo
 
    - Cada 10 segundos, se muestra el estado actual de la RAM y la memoria virtual, incluyendo el identificador de proceso (PID) y el número de página.
 
+6. **Colores en consola:**
+
+   - Diferentes colores se usan para identificar eventos:
+     - **Verde:** Accesos exitosos a RAM o SWAP.
+     - **Amarillo:** *Page faults* y errores al buscar una página.
+     - **Rojo:** Finalización por falta de memoria.
+     - **Azul y Morado:** Para representar visualmente la RAM y SWAP.
+
 ---
 
 ## **Inputs del Programa**
