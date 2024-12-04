@@ -238,7 +238,7 @@ int main() {
             processes.push_back(newProcess);
         }
 
-        if ((time(0) - startTime) % 5 == 0 && processes.size()>3)
+        if ((time(0) - startTime) % 5 == 0 && processes.size()>2)
         {
             int randomProcessIndex = selectRandomProcess();
             int processID = processes[randomProcessIndex].id;

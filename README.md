@@ -1,6 +1,13 @@
 # TareaSO-3 - Simulador de Paginación en Memoria
+### Creadores: **Alex Marambio y Diego Muñoz**
 
-Este programa simula el mecanismo de **paginación de memoria** utilizado por los sistemas operativos para gestionar la memoria RAM y la memoria virtual (swap). Implementa funcionalidades clave como creación de procesos, acceso a direcciones virtuales y manejo de *page faults* con políticas de reemplazo FIFO.
+Este programa simula el mecanismo de **paginación de memoria** utilizado por los sistemas operativos para gestionar la memoria RAM y la memoria virtual (swap). Implementa funcionalidades clave como creación y eliminación de procesos, acceso a direcciones virtuales y manejo de *page faults* usando la política de reemplazo **FIFO**.
+- Se recomienda ejecutar en Linux, aunque funciona para windows sin problema.
+Para compilar y ejecutar el programa se ocupa (dentro del directorio donde se descargue o clone el repositorio), los siguientes comandos por consola:
+-   compilar
+``` g++ -o nombre_ejecutable T3-alex2024.cpp```
+-   ejecutar
+``` ./nombre_ejecutable```
 
 ---
 
@@ -10,13 +17,13 @@ Este programa simula el mecanismo de **paginación de memoria** utilizado por lo
 
    - El programa solicita al usuario ingresar:
      - El tamaño de la memoria RAM en MB.
-     - El tamaño de cada página en KB.
+     - El tamaño de cada página en **KB**.
    - Genera el tamaño de la memoria virtual como un valor aleatorio entre 1.5 y 4.5 veces la memoria RAM.
    - Calcula cuántas páginas pueden caber en RAM y en la memoria virtual.
 
 2. **Creación de procesos:**
 
-   - Cada 2 segundos, se crea un proceso con un tamaño aleatorio entre 1 MB y 10 MB.
+   - Cada 2 segundos, se crea un proceso con un tamaño aleatorio entre **1 MB y 10 MB**.
    - Las páginas del proceso se asignan primero a la RAM si hay espacio. Si no, se alojan en la memoria virtual.
    - Si no queda espacio en RAM ni en memoria virtual, la simulación termina con un mensaje de error.
 
@@ -24,7 +31,7 @@ Este programa simula el mecanismo de **paginación de memoria** utilizado por lo
 
    - Cada 5 segundos, el programa genera un acceso aleatorio a una dirección virtual (número de página).
    - Si la página solicitada no está en RAM, ocurre un *page fault* y se mueve la página desde la memoria virtual a la RAM.
-   - Si la RAM está llena, se utiliza la política **FIFO** (First-In-First-Out) para reemplazar la página más antigua en RAM.
+    Para esto se emplea el algoritmo **FIFO**, osea que el primer proceso en entrar a la RAM será el primero en irse. También para una visualización más fácil de qe realmente se mueve la pagina a la RAM, el valor de esta no cambia. Como se verá a continuación si en el swap tenia numero de pagina vitual `6`, el numero de marco físico tambien será `6` y se podrá ver en la ayuda visual de la RAM y SWAP que implementamos junto con el proceso al que le pertenece (pid: id del proceso).
 
 4. **Eliminación de procesos:**
 
@@ -33,11 +40,11 @@ Este programa simula el mecanismo de **paginación de memoria** utilizado por lo
 
 5. **Visualización:**
 
-   - Cada 10 segundos, se muestra el estado actual de la RAM y la memoria virtual, incluyendo el identificador de proceso (PID) y el número de página.
+   - Cada 10 segundos, se muestra el estado actual de la RAM y la memoria virtual, incluyendo el identificador de proceso (PID) y el número de página como se mencionó más arriba para ver visualmente como se ejecuta el swapping.
 
 6. **Colores en consola:**
 
-   - Diferentes colores se usan para identificar eventos:
+   - Diferentes colores se usan para identificar eventos más facilmente:
      - **Verde:** Accesos exitosos a RAM o SWAP.
      - **Amarillo:** *Page faults* y errores al buscar una página.
      - **Rojo:** Finalización por falta de memoria.
