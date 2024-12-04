@@ -55,6 +55,8 @@ El programa genera mensajes en la consola indicando:
      Donde `pid` es el id del proceso cargado en esa página, `pfn` es el numero de marco físico y `vpn` numero de pagina virtual.
      Al realizar un swap el numero en el `vpn` será el mismo que quedará posteriormente en `pfn` y viceversa: Esto para simplificar la busqueda del cambio realizado y ver efectivamente que funciona el swapping tanto de memoria vitual -> RAM como RAM -> memoria virtual.
 
+     ![ejemplo](img/output_example.png)
+
 3. **Finalización del programa:**
 
    - Si la memoria se llena:
