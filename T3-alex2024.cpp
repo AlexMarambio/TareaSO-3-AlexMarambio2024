@@ -184,21 +184,21 @@ void accessMemory() {
         // Buscar la página en la memoria virtual
         Page pageInSwap;
         bool pageFoundInSwap = false;
-        for (auto& page : VirtualMem) {
-            if (page.pageNumber == virtualPageNumber) {
-                pageInSwap = page;
+        for (auto page = VirtualMem.begin(); page != VirtualMem.end(); ++page) {
+            if (page->pageNumber == virtualPageNumber) {
+                pageInSwap = *page;
                 pageFoundInSwap = true;
+                
+                VirtualMem.erase(page);
                 break;
             }
         }
 
         if (pageFoundInSwap) {
-            // Página encontrada en la memoria virtual (swap), ahora la movemos a la RAM
             cout << green <<"Página " << virtualPageNumber << " encontrada en la memoria virtual (swap).\n"<<reset;
 
-            // Si la RAM está llena, usamos FIFO para reemplazar la página más antigua
             if (RAM.size() >= ramPages) {
-                // Reemplazar página más antigua en RAM usando FIFO
+                // Reemplazar página con FIFO
                 Page oldestPage = RAM.front();
                 cout << "Reemplazando página más antigua en la RAM: Proceso " << oldestPage.processID << ", Página " << oldestPage.pageNumber << endl;
 
@@ -209,13 +209,13 @@ void accessMemory() {
                 RAM.pop();  // Elimina la página más antigua
 
                 // Añadir la página que venía del swap a la RAM
-                pageInSwap.isInRAM = true;  // Marcamos la página como estando en RAM
-                RAM.push(pageInSwap);  // La añadimos a la RAM
+                pageInSwap.isInRAM = true;
+                RAM.push(pageInSwap);
                 cout << "Página " << pageInSwap.pageNumber << " del proceso " << pageInSwap.processID << " añadida a la RAM.\n";
             } else {
-                // Si hay espacio en RAM, simplemente insertamos la página directamente
-                pageInSwap.isInRAM = true;  // Marcamos la página como estando en RAM
-                RAM.push(pageInSwap);  // La añadimos a la RAM
+                // Si hay espacio en la RAM se incerta altiro
+                pageInSwap.isInRAM = true;
+                RAM.push(pageInSwap);
                 cout << "Página " << pageInSwap.pageNumber << " del proceso " << pageInSwap.processID << " añadida a la RAM.\n";
             }
         } else {
